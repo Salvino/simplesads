@@ -34,7 +34,7 @@ var client = new elasticsearch.Client({
 	   }
    }); 
 
-fs.readFile('z/saida-0.txt', function(err,data){
+fs.readFile('quebra/arquivo-0.txt', function(err,data){
 //fs.readFile('z/output-0.txt', function(err,data){
 //fs.readFile('wikiartigo.xml', function(err,data){
 
