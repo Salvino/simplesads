@@ -48,13 +48,39 @@ Para consumir os dados no Elasticsearch basta executar o arquivo (<b>server.js</
 ***Wiki de um termo:***
 ```html
 /encyclopedia/v1/[linguaorigem]/[termo]
-Ex. /encyclopedia/v1/pt/astronomia
+Ex. /encyclopedia/v1/pt/Anarcocapitalismo
+
+Saída:
+{
+	Encyclopedia: [
+		{
+			Termo: [
+					"Anarcocapitalismo"
+					],
+				Descricao: "Anarcocapitalismo (também conhecido como anarquismo de livre mercado, anarquismo libertário, 								anarquismo de propriedade privada ou anarcoliberalismo) é uma filosofia política capitalista que 								promove a anarquia entendida como a eliminação do Estado e a proteção a soberania do indivíduo 								através da propriedade privada e do mercado livre.",
+				Url: "https://pt.wikipedia.org/wiki/Anarcocapitalismo",
+				Imagem: "https://commons.wikimedia.org/wiki/Special:FilePath/Gadsden%20flag.svg"
+		}
+	]
+}
 
 ```
 ***Wiki abstract de um termo:***
 ```html
 /encyclopedia/v12/[linguaorigem]/[termo]/[campo]
-Ex. /encyclopedia/v2/pt/astronomia/descricao
+Ex. /encyclopedia/v2/pt/Anarcocapitalismo/descricao
+
+Saída:
+{
+	Encyclopedia: [
+		{
+			Termo: [
+					"Anarcocapitalismo"
+					],
+				Descricao: "Anarcocapitalismo (também conhecido como anarquismo de livre mercado, anarquismo libertário, 								anarquismo de propriedade privada ou anarcoliberalismo) é uma filosofia política capitalista que 							promove a anarquia entendida como a eliminação do Estado e a proteção a soberania do indivíduo 							   através da propriedade privada e do mercado livre."
+		}
+	]
+}
 
 ```
 ***Dicionario de um termo:***
