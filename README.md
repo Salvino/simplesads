@@ -6,11 +6,10 @@ Para realizar a divisão do Dataset da WIKIPEDIA em vários arquivo basta execut
 ***on the client-side:***
 ```html
 // Carrega o arquivo para leitura
-let input = fs.createReadStream('path_dataset'),
+let input = fs.createReadStream('arquivo_dataset'),
     chunker = new SizeChunker({
-        chunkSize:64 //tamanha do arquivo
-    }),
-    output;
+        chunkSize:64 //tamanha do que deseja quebrar o arquivo em Kbytes
+    }),output;
 ```
 
 
