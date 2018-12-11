@@ -76,10 +76,10 @@ Ex. /translate/Lembrança/pt/ja
 
 Saída:
 {
-Tradução: {
-lingua: "ja",
-palavra: "思い出"
-}
+	Tradução: {
+		lingua: "ja",
+		palavra: "思い出"
+	}
 }
 
 ```
