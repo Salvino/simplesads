@@ -1,0 +1,22 @@
+{
+  "name": "simplesads",
+  "version": "1.0.0",
+  "description": "",
+  "main": "api3.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Salvino/simplesads.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Salvino/simplesads/issues"
+  },
+  "homepage": "https://github.com/Salvino/simplesads#readme",
+  "dependencies": {
+    "dotenv": "^6.2.0"
+  }
+}
