@@ -1,7 +1,7 @@
 # Simplesads
 Wikipedia and wiktionary access data
 
-Para realizar a divisão do Dataset da WIKIPEDIA em vários arquivo basta executar o arquivo (split.js)
+Para realizar a divisão do Dataset da WIKIPEDIA em vários arquivo basta executar o arquivo (<b>split.js</b>)
 
 ***on the client-side:***
 ```html
@@ -19,4 +19,4 @@ chunker.on('chunkStart', function (id, done) {
 ```
 
 
-Para realizar a inserção dos dados no Elasticsearch basta executar o arquivo (armazenarDados.js)
+Para realizar a inserção dos dados no Elasticsearch basta executar o arquivo (<b>wikipedia.js</b>)
