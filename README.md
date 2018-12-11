@@ -20,3 +20,15 @@ chunker.on('chunkStart', function (id, done) {
 
 
 Para realizar a inserção dos dados no Elasticsearch basta executar o arquivo (<b>wikipedia.js</b>)
+
+
+```html
+// inserir arquivo para ser carregado no elasticsearch
+fs.readFile('nome_dataset', function (err, data){
+	if (err) {
+		console.log(err);
+	...
+
+```
+
+
