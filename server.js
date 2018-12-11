@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
     res.send("HELLO WORD!");
 });
 
-app.get("/encyclopedia/:linguaorigem/:termo", (req, res) => {
+app.get("/encyclopedia/v1/:linguaorigem/:termo", (req, res) => {
 
     console.log("Pegando parametro palavra: " + req.params.linguaorigem);
     console.log("Pegando parametro lingua: " + req.params.termo);
@@ -31,6 +31,91 @@ app.get("/encyclopedia/:linguaorigem/:termo", (req, res) => {
             o[key].push({Termo: resposta.hits.hits[i]._source.Titulo, Descricao: resposta.hits.hits[i]._source.Descricao, Url: resposta.hits.hits[i]._source.Url, Imagem: resposta.hits.hits[i]._source.Imagem});
         }
         res.json(o);
+    }, function (err) {
+        console.trace(err.message);
+    });
+
+});
+
+app.get("/encyclopedia/v2/:linguaorigem/:termo/:campo", (req, res) => {
+
+    console.log("Pegando parametro palavra: " + req.params.linguaorigem);
+    console.log("Pegando parametro lingua: " + req.params.termo);
+
+    client.search({
+        index: 'wikipedia',
+        type: 'Titulos',
+        q: 'Titulo:' + req.params.termo
+    }).then(function (resposta) {
+        let o = {}
+        let key = 'Encyclopedia';
+        let img = 'Imagem';
+        o[key] = [];
+        if (req.params.campo === "descricao") {
+            for (let i = 0; i < resposta.hits.hits.length; i++) {
+                o[key].push({Descricao: resposta.hits.hits[i]._source.Descricao});
+            }
+        } else if (req.params.campo === "url") {
+            for (let i = 0; i < resposta.hits.hits.length; i++) {
+                o[key].push({Url: resposta.hits.hits[i]._source.Url});
+            }
+        } else if (req.params.campo === "imagem") {
+            for (let i = 0; i < resposta.hits.hits.length; i++) {
+                o[key].push({Imagem: resposta.hits.hits[i]._source.Imagem});
+            }
+        }
+
+        res.json(o);
+    }, function (err) {
+        console.trace(err.message);
+    });
+
+});
+
+app.get("/dictionary/v1/:linguaorigem/:termo/", (req, res) => {
+
+    console.log("Pegando parametro palavra: " + req.params.linguaorigem);
+    console.log("Pegando parametro lingua: " + req.params.termo);
+
+    client.search({
+        index: 'wiktionary',
+        type: 'Titulos',
+        q: 'Titulo:' + req.params.termo
+    }).then(function (resposta) {
+        let o = {}
+        let key = 'dictionary';
+        let img = 'Imagem';
+        o[key] = [];
+
+        res.json(resposta.hits.hits[0]._source);
+    }, function (err) {
+        console.trace(err.message);
+    });
+
+});
+
+app.get("/dictionary/v2/:linguaorigem/:termo/:campo", (req, res) => {
+
+    console.log("Pegando parametro palavra: " + req.params.linguaorigem);
+    console.log("Pegando parametro lingua: " + req.params.campo);
+
+    client.search({
+        index: 'wiktionary',
+        type: 'Titulos',
+        q: 'Titulo:' + req.params.termo
+    }).then(function (resposta) {
+        let o = {}
+        let key = 'dictionary';
+        let img = 'Imagem';
+        o[key] = [];
+
+        if (req.params.campo === "sinonimo") {
+            res.json(resposta.hits.hits[0]._source.definições[1]);
+        }
+        if (req.params.campo === "significado") {
+            res.json(resposta.hits.hits[0]._source.definições[0]);
+        }
+
     }, function (err) {
         console.trace(err.message);
     });

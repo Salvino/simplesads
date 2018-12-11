@@ -12,7 +12,7 @@ let client = new elasticsearch.Client({
 });
 
 client.indices.create({
-    index: 'wikipedia'
+    index: 'wiktionary'
 }, function (err, resp, status) {
     if (err) {
         console.log(err);
@@ -33,12 +33,9 @@ fs.readFile('antraz.txt', function (err, data) {
 
             let titulo2 = result.page.title;
             let session = {
-                'wiktionary': {
-                    'palavra': titulo2,
-                    'linguagem': 'pt'
-                },
-                'definições': [],
-                'state': true
+                'Titulo': titulo2,
+                'linguagem': 'pt',
+                'definições': []
             };
 
             let texto = result.page.revision[0].text[0]._;
@@ -65,9 +62,6 @@ fs.readFile('antraz.txt', function (err, data) {
                         sub[s] = sub[s].replace('[[', '');
                         sub[s] = sub[s].replace(']]', '');
                     }
-                    let strLen = sub[s].length;
-                    sub[s] = sub[s].slice(0, -2);
-
                     x[subK].push(sub[s]);
                     s++;
                 }
@@ -156,6 +150,26 @@ fs.readFile('antraz.txt', function (err, data) {
                 session.definições.push(s);
             }
 
+            if (S(texto).include("===Sinônimo===")) {
+
+                let match = new RegExp("===Sinônimo===[^]+").exec(texto);
+                sinonimo = S(match).between('===Sinônimo===', '==').s
+                let s = {}
+                let sinK = 'Sinônimo';
+                s[sinK] = [];
+                let x = 0;
+                let sin = [];
+
+                while ((S(sinonimo).count("* [[")) > 0) {
+                    sin[x] = S(sinonimo).between('* [[', ']]').s;
+                    sinonimo = sinonimo.replace('* [[' + sin[x] + ']]', '');
+                    s[sinK].push(sin[x]);
+                    x++;
+                }
+                console.log(s);
+                session.definições.push(s);
+            }
+
             if (S(texto).include("===Tradução===")) {
 
                 let match2 = new RegExp("===Tradução===[^]+").exec(texto);
@@ -183,13 +197,11 @@ fs.readFile('antraz.txt', function (err, data) {
     }
 });
 
-var inserirDados = function (dados, callback) {
+var inserirDados = function (body, callback) {
     client.index({
-        index: 'wikipedia',
-        type: 'Wiktionary',
-        body: {
-            dados
-        }
+        index: 'wiktionary',
+        type: 'Titulos',
+        body
     }, function (err, resp, status) {
         console.log(resp);
         callback(resp);
