@@ -139,15 +139,15 @@ app.get("/translate/v1/:termo/:linguaorigem/:linguadestino", (req, res) => {
 
         let tam = (resposta.hits.hits[0]._source.definições.length) - 1;
         let traducaoJson;
-        
+
         for (let i = 0; i < resposta.hits.hits[0]._source.definições[tam].Tradução.length; i++) {
             let lg = resposta.hits.hits[0]._source.definições[tam].Tradução[i];
             lg = lg.split("|");
-            if(lg[0] === req.params.linguadestino){
-                res.json({ Tradução: { lingua: lg[0], palavra: lg[1] }});
+            if (lg[0] === req.params.linguadestino) {
+                res.json({Tradução: {lingua: lg[0], palavra: lg[1]}});
             }
         }
-        res.json({ Tradução: { }});
+        res.json({Tradução: {}});
 
     }, function (err) {
         console.trace(err.message);
