@@ -11,7 +11,7 @@ let input = fs.createReadStream('lib.txt'),
     output;
  
 chunker.on('chunkStart', function (id, done) {
-    output = fs.createWriteStream('quebra/arquivo-' + id+".txt"); //escrita do arquivo
+    output = fs.createWriteStream('arquivo-' + id+".txt"); //escrita do arquivo
     done();
 });
  
