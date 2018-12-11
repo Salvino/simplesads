@@ -16,7 +16,7 @@ client.indices.create({index: 'wikipedia'}, function (err, resp) {
     }
 });
 
-fs.readFile('quebra/wikiartigo.xml', function (err, data) {
+fs.readFile('wikiartigo.xml', function (err, data) {
     if (err) {
         console.log(err);
     }
