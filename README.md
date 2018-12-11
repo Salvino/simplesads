@@ -3,7 +3,7 @@ Wikipedia and wiktionary access data
 
 Para realizar a divisão do Dataset da WIKIPEDIA em vários arquivo basta executar o arquivo (<b>split.js</b>)
 
-***on the client-side:***
+***Tutorial:***
 ```html
 // Carrega o arquivo para leitura
 let input = fs.createReadStream('arquivo_dataset'),
