@@ -10,6 +10,12 @@ let input = fs.createReadStream('arquivo_dataset'),
     chunker = new SizeChunker({
         chunkSize:64 // tamanho que deseja quebrar o arquivo em Kbytes
     }),output;
+
+chunker.on('chunkStart', function (id, done) {
+    output = fs.createWriteStream("arquivo-"+id".txt"); // escrita do arquivo
+    done();
+});
+
 ```
 
 
