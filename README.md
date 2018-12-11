@@ -74,4 +74,12 @@ Ex. /dictionary/v1/pt/Lembrança/sinonimo
  /translate/[termo]/[linguaorigem]/[linguadestino]
 Ex. /translate/Lembrança/pt/en
 
+Saída:
+{
+	Tradução: {
+				lingua: "ja",
+				palavra: "思い出"
+			}
+	}
+
 ```
