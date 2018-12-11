@@ -69,3 +69,9 @@ Ex. /dictionary/v1/pt/Lembrança
 Ex. /dictionary/v1/pt/Lembrança/sinonimo
 
 ```
+***Traduzir uma palavra:***
+```html
+ /translate/[termo]/[linguaorigem]/[linguadestino]
+Ex. /translate/Lembrança/pt/en
+
+```
