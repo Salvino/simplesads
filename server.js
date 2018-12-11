@@ -122,6 +122,39 @@ app.get("/dictionary/v2/:linguaorigem/:termo/:campo", (req, res) => {
 
 });
 
+app.get("/translate/v1/:termo/:linguaorigem/:linguadestino", (req, res) => {
+
+    console.log("Pegando parametro palavra: " + req.params.linguaorigem);
+    console.log("Pegando parametro lingua: " + req.params.campo);
+
+    client.search({
+        index: 'wiktionary',
+        type: 'Titulos',
+        q: 'Titulo:' + req.params.termo
+    }).then(function (resposta) {
+        let o = {}
+        let key = 'dictionary';
+        let img = 'Imagem';
+        o[key] = [];
+
+        let tam = (resposta.hits.hits[0]._source.definições.length) - 1;
+        let traducaoJson;
+        
+        for (let i = 0; i < resposta.hits.hits[0]._source.definições[tam].Tradução.length; i++) {
+            let lg = resposta.hits.hits[0]._source.definições[tam].Tradução[i];
+            lg = lg.split("|");
+            if(lg[0] === req.params.linguadestino){
+                res.json({ Tradução: { lingua: lg[0], palavra: lg[1] }});
+            }
+        }
+        res.json({ Tradução: { }});
+
+    }, function (err) {
+        console.trace(err.message);
+    });
+
+});
+
 app.listen(process.env.SERVER_PORT, () => {
     console.log("Servidor Ativo!");
 });

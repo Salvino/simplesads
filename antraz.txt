@@ -1,0 +1,22 @@
+  <page>
+    <title>Lembrança</title>
+    <ns>8</ns>
+    <id>2</id>
+    <revision>
+      <id>18998</id>
+      <parentid>1358</parentid>
+      <timestamp>2004-08-29T22:47:44Z</timestamp>
+      <contributor>
+        <username>Patrick-br</username>
+        <id>2</id>
+      </contributor>
+      <comment>tradução</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve">
+      {{Wikiquote|Lembrança}} {{ver também|lembranças}} ={{-pt-}}= ==Substantivo== {{flex.pt|fs=lembrança|fp=lembranças}} {{paroxítona|lem|bran|ça}}, ''feminino'' {{+info|data=1437}} # ato ou efeito de [[lembrar]](-se) # algo [[presente]] na [[memória]] ou a [[próprio|própria]] [[memória]] # [[sugestão]] # [[presente]] # [[brinde]] # algo que [[subsistir|subsiste]] e [[exemplificar|exemplifica]] testemunhando um [[fato]] [[ocorrido]] # [[ideia]] de [[realizar]] [[algo]] # algum [[artifício]] para [[ajudar]] a [[memória]] e [[recordação]] ===Sinônimos=== De '''1''' e '''2''': * [[recordação]] De '''6''': * [[reminiscência]] * [[sequela]] (quando [[ser|é]] uma reminiscência [[negativo|negativa]]) De '''7''': * [[inspiração]] * [[alvitre]] De '''8''': ** [[lembrete]]. ===Tradução=== {{tradini}} * {{trad|de|Erinnerung}} * {{trad|en|memory}} * {{trad|it|ricordo}} {{tradmeio}} * {{trad|ja|思い出}} * {{trad|mwl|lhembráncia|mimória}} {{tradfim}} =={{etimologia|pt}}== : {{escopo|Morfologia}} [[lembrar]] + [[-ança-]]. ==Ver também== ===No Wikcionário=== {{verTambém.Ini}} * [[alembrado]] * [[alembrança]] * [[alembrar]] * [[alembrar]] * [[alembrete]] {{verTambém.NovaColuna}} * [[alembrote]] * [[deslembrado]] * [[deslembrança]] * [[deslembrar]] * [[deslembrativo]] {{verTambém.NovaColuna}} * [[deslembrável]] * [[lembradiço]] * [[lembrado]] * [[lembrador]] * [[lembramento]] {{verTambém.NovaColuna}} * [[lembrançoso]] * [[lembrar]] * [[lembrável]] * [[lembreada]] * [[lembrete]] {{verTambém.Fim}} [[Categoria:Substantivo (Português)]]
+
+      </text>
+      <sha1>0acykl71lto9v65yve23lmjgia1h6sz</sha1>
+    </revision>
+  </page>

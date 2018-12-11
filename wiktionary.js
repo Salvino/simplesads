@@ -197,7 +197,7 @@ fs.readFile('antraz.txt', function (err, data) {
     }
 });
 
-var inserirDados = function (body, callback) {
+let inserirDados = function (body, callback) {
     client.index({
         index: 'wiktionary',
         type: 'Titulos',
