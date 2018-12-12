@@ -14,7 +14,9 @@ module.exports = {
         "object-shorthand":"off",
         "no-var":"off",
         "no-unused-expressions":"off",
-        "prefer-destructuring":"off"
+		"prefer-destructuring":"off",
+		"no-console":"off",
+		"no-underscore-dangle":"off"
     },
     "env": {
         "node": true,
