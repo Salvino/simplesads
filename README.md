@@ -48,13 +48,39 @@ Para consumir os dados no Elasticsearch basta executar o arquivo (<b>server.js</
 ***Wiki de um termo:***
 ```html
 /encyclopedia/v1/[linguaorigem]/[termo]
-Ex. /encyclopedia/v1/pt/astronomia
+Ex. /encyclopedia/v1/pt/Anarcocapitalismo
+
+Saída:
+{
+	Encyclopedia: [
+		{
+			Termo: [
+					"Anarcocapitalismo"
+					],
+				Descricao: "Anarcocapitalismo (também conhecido como anarquismo de livre mercado, anarquismo libertário, 								anarquismo de propriedade privada ou anarcoliberalismo) é uma filosofia política capitalista que 								promove a anarquia entendida como a eliminação do Estado e a proteção a soberania do indivíduo 								através da propriedade privada e do mercado livre.",
+				Url: "https://pt.wikipedia.org/wiki/Anarcocapitalismo",
+				Imagem: "https://commons.wikimedia.org/wiki/Special:FilePath/Gadsden%20flag.svg"
+		}
+	]
+}
 
 ```
 ***Wiki abstract de um termo:***
 ```html
 /encyclopedia/v12/[linguaorigem]/[termo]/[campo]
-Ex. /encyclopedia/v2/pt/astronomia/descricao
+Ex. /encyclopedia/v2/pt/Anarcocapitalismo/descricao
+
+Saída:
+{
+	Encyclopedia: [
+		{
+			Termo: [
+					"Anarcocapitalismo"
+					],
+				Descricao: "Anarcocapitalismo (também conhecido como anarquismo de livre mercado, anarquismo libertário, 								anarquismo de propriedade privada ou anarcoliberalismo) é uma filosofia política capitalista que 							promove a anarquia entendida como a eliminação do Estado e a proteção a soberania do indivíduo 							   através da propriedade privada e do mercado livre."
+		}
+	]
+}
 
 ```
 ***Dicionario de um termo:***
@@ -62,10 +88,77 @@ Ex. /encyclopedia/v2/pt/astronomia/descricao
 /dictionary/[linguaorigem]/[termo]
 Ex. /dictionary/v1/pt/Lembrança
 
+Saída:
+{
+	Titulo: [
+		"Lembrança"
+	],
+	linguagem: "pt",
+	definições: [
+			{
+				Substantivo: [
+						" ato ou efeito de lembrar(-se) ",
+						" algo presente na memória ou a próprio|própria memória ",
+						" sugestão ",
+						" presente ",
+						" brinde ",
+						" algo que subsistir|subsiste e exemplificar|exemplifica testemunhando um fato ocorrido ",
+						" ideia de realizar algo ",
+						" algum artifício para ajudar a memória e recordação "
+					]
+			},
+			{
+				Sinônimos: [
+						"recordação",
+						"reminiscência",
+						"sequela",
+						"inspiração",
+						"alvitre",
+						"lembrete"
+					]
+			},
+			{
+				Tradução: [
+						"de|Erinnerung",
+						"en|memory",
+						"it|ricordo",
+						"ja|思い出",
+						"mwl|lhembráncia|mimória"
+					]
+			}
+		]
+}
+
 ```
 ***Dicionario específico de um termo:***
 ```html
 /dictionary/[linguaorigem]/[termo]/[campo]
-Ex. /dictionary/v1/pt/Lembrança/sinonimo
+Ex. /dictionary/v2/pt/Lembrança/sinonimo
+
+Saída:
+{
+	Sinônimos: [
+			"recordação",
+			"reminiscência",
+			"sequela",
+			"inspiração",
+			"alvitre",
+			"lembrete"
+		]
+}
+
+```
+***Traduzir uma palavra:***
+```html
+ /translate/[termo]/[linguaorigem]/[linguadestino]
+Ex. /translate/Lembrança/pt/ja
+
+Saída:
+{
+	Tradução: {
+		lingua: "ja",
+		palavra: "思い出"
+	}
+}
 
 ```
