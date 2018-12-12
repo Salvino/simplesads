@@ -10,7 +10,6 @@ module.exports = {
         "prefer-template":"off",
         "prefer-arrow-callback":"off",
         "func-names":"off",
-        "no-undef":"off",
         "object-shorthand":"off",
         "no-var":"off",
         "no-unused-expressions":"off",

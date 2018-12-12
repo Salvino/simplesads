@@ -4,6 +4,12 @@ const elasticsearch = require('elasticsearch');
 const fs = require('fs');
 const S = require('string');
 
+const session = {
+	Titulo: {},
+	linguagem: 'pt',
+	definições: [],
+};
+
 const client = new elasticsearch.Client({
 	host: process.env.DB_HOST + ':' + process.env.DB_PORT,
 	log: 'trace',
@@ -27,11 +33,8 @@ const inserirDados = function (body, callback) {
 const aux = function (error, result) {
 
 	const titulo2 = result.page.title;
-	const session = {
-		Titulo: titulo2,
-		linguagem: 'pt',
-		definições: [],
-	};
+	session.Titulo = titulo2;
+
 
 	const texto = result.page.revision[0].text[0]._;
 
@@ -155,7 +158,7 @@ const aux = function (error, result) {
 	if (S(texto).include('===Sinônimos===')) {
 
 		const match = new RegExp('===Sinônimos===[^]+').exec(texto);
-		sinonimo = S(match).between('===Sinônimos===', '==').s;
+		let sinonimo = S(match).between('===Sinônimos===', '==').s;
 		const s = {};
 		const sinK = 'Sinônimos';
 		s[sinK] = [];
@@ -178,7 +181,7 @@ const aux = function (error, result) {
 	if (S(texto).include('===Sinônimo===')) {
 
 		const match = new RegExp('===Sinônimo===[^]+').exec(texto);
-		sinonimo = S(match).between('===Sinônimo===', '==').s;
+		let sinonimo = S(match).between('===Sinônimo===', '==').s;
 		const s = {};
 		const sinK = 'Sinônimo';
 		s[sinK] = [];
@@ -201,7 +204,7 @@ const aux = function (error, result) {
 	if (S(texto).include('===Tradução===')) {
 
 		const match2 = new RegExp('===Tradução===[^]+').exec(texto);
-		traducao = S(match2[0]).between('===Tradução===', '==').s;
+		let traducao = S(match2[0]).between('===Tradução===', '==').s;
 		const t = {};
 		const traK = 'Tradução';
 		t[traK] = [];

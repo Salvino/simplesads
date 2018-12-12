@@ -70,6 +70,7 @@ const aux = function (error, result) {
 		let texto = result.page.revision[0].text[0]._;
 		const textoSemTramento = result.page.revision[0].text[0]._;
 		let ImgFinal;
+		let img;
 		url = URI.serialize(URI.parse('https://pt.wikipedia.org/wiki/' + titulo));
 		texto = wtf(texto).text();
 		texto = S(texto).between('', '\n').s;
