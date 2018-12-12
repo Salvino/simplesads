@@ -1,0 +1,4 @@
+.editorconfig
+.env
+node_modules
+.eslintrc.js

@@ -1,8 +1,6 @@
 require('dotenv').config();
-const wtf = require('wtf_wikipedia');
 const parseString = require('xml2js').parseString;
 const elasticsearch = require('elasticsearch');
-const URI = require("uri-js");
 const fs = require('fs');
 const S = require('string');
 
