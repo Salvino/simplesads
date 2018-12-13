@@ -5,27 +5,73 @@ const elasticsearch = require('elasticsearch');
 const URI = require('uri-js');
 const fs = require('fs');
 const S = require('string');
+const requestImageSize = require('request-image-size');
 
 const client = new elasticsearch.Client({ host: process.env.DB_HOST + ':' + process.env.DB_PORT, log: 'trace' });
 
 const inserirDados = function (ti, txt, i, u, callback) {
 
-	client.index({
-		index: 'wikipedia',
-		type: 'Titulos',
-		body: {
-			Titulo: ti,
-			Descricao: txt,
-			Url: u,
-			Imagem: i,
-			// "Imagem":{"Url": imagemXml, "Width": imagemXmlW, "Height": imagemXmlH},
-		},
-	}, function (err, resp) {
+	if (i === 'Não possui imagem') {
 
-		console.log(resp);
-		callback(resp);
+		client.index({
+			index: 'wikipedia',
+			type: 'Titulos',
+			body: {
+				Titulo: ti,
+				Descricao: txt,
+				Url: u,
+				Imagem: {},
+			},
+		}, function (err, resp) {
 
-	});
+			console.log(resp);
+			callback(resp);
+
+		});
+
+	} else {
+
+		const options = {
+			url: i,
+			headers: {
+				'User-Agent': 'request-image-size',
+			},
+		};
+
+		requestImageSize(options).then(size => client.index({
+			index: 'wikipedia',
+			type: 'Titulos',
+			body: {
+				Titulo: ti,
+				Descricao: txt,
+				Url: u,
+				// Imagem: i,
+				Imagem: { Url: i, Width: size.width, Height: size.height },
+			},
+		}, function (err, resp) {
+
+			console.log(resp);
+			callback(resp);
+
+		})).catch(
+			client.index({
+				index: 'wikipedia',
+				type: 'Titulos',
+				body: {
+					Titulo: ti,
+					Descricao: txt,
+					Url: u,
+					Imagem: {},
+				},
+			}, function (err, resp) {
+
+				console.log(resp);
+				callback(resp);
+
+			}),
+		);
+
+	}
 
 };
 
@@ -125,7 +171,7 @@ const aux = function (error, result) {
 
 			} else {
 
-				ImgFinal = 'Não possui imagem!';
+				ImgFinal = 'Não possui imagem';
 
 			}
 
@@ -167,7 +213,7 @@ const aux = function (error, result) {
 
 			} else {
 
-				ImgFinal = 'Não possui imagem!';
+				ImgFinal = 'Não possui imagem';
 
 			}
 
@@ -188,13 +234,13 @@ const aux = function (error, result) {
 
 		} else {
 
-			ImgFinal = 'Não possui imagem!';
+			ImgFinal = 'Não possui imagem';
 
 		}
 
-		if (ImgFinal === 'Não possui imagem!') {
+		if (ImgFinal === 'Não possui imagem') {
 
-			urlImagem = 'Não possui imagem!';
+			urlImagem = 'Não possui imagem';
 
 		} else {
 
