@@ -45,7 +45,6 @@ const inserirDados = function (ti, txt, i, u, callback) {
 				Titulo: ti,
 				Descricao: txt,
 				Url: u,
-				// Imagem: i,
 				Imagem: { Url: i, Width: size.width, Height: size.height },
 			},
 		}, function (err, resp) {
@@ -61,7 +60,7 @@ const inserirDados = function (ti, txt, i, u, callback) {
 					Titulo: ti,
 					Descricao: txt,
 					Url: u,
-					Imagem: {},
+					Imagem: { Url: i },
 				},
 			}, function (err, resp) {
 
@@ -244,6 +243,7 @@ const aux = function (error, result) {
 
 		} else {
 
+			ImgFinal = S(ImgFinal).collapseWhitespace().s;
 			urlImagem = URI.serialize(URI.parse('https://commons.wikimedia.org/wiki/Special:FilePath/' + ImgFinal));
 
 		}
